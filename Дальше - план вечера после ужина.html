@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Дальше - план вечера после ужина</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f6f4; --surface:#ffffff; --ink:#12223a; --muted:#52627a; --line:#d3dedb;
+  --brand:#0b6e6e; --on-brand:#ffffff; --pop:#d1345b; --soft:#e2ece9;
+  --c-family:#ffd36e; --c-pair:#ffa8bd; --c-cowork:#a9c8ff; --c-inno:#a8e6c9; --on-tint:#12223a;
+  --phone-frame:#12223a; --ph-bg:#13203a; --ph-surface:#1f3050; --ph-ink:#eef3fb; --ph-muted:#aebbd3;
+  --ph-line:#34486b; --ph-accent:#ffc24b;
+  --head:'Unbounded',system-ui,sans-serif;
+  --body:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c1522; --surface:#142237; --ink:#eaf1fa; --muted:#9fb0c8; --line:#29405c;
+    --brand:#5fd0cb; --on-brand:#06201f; --pop:#ff7b9c; --soft:#1a2d45;
+    --phone-frame:#34486b; --ph-bg:#0a1220;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c1522; --surface:#142237; --ink:#eaf1fa; --muted:#9fb0c8; --line:#29405c;
+  --brand:#5fd0cb; --on-brand:#06201f; --pop:#ff7b9c; --soft:#1a2d45;
+  --phone-frame:#34486b; --ph-bg:#0a1220;
+}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+h1,h2,h3,h4{font-family:var(--head);font-weight:700;line-height:1.15;margin:0}
+p{margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--head);font-weight:700;font-size:20px}
+.tabs{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.tabs button{background:none;border:0;padding:8px 14px;border-radius:999px;cursor:pointer;color:var(--muted);font-weight:500}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tabs button:not([aria-selected="true"]):hover{background:var(--soft);color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:48px 0 64px}
+.hero h1{font-size:clamp(30px,4.6vw,54px);letter-spacing:-.01em}
+.lead{margin-top:18px;color:var(--muted);font-size:18px;max-width:52ch}
+.swatches{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px}
+.sw{border-radius:16px;padding:12px 14px;color:var(--on-tint);font-size:15px}
+.sw b{display:block;font-family:var(--head);font-size:14px;margin-bottom:2px}
+.sw.family{background:var(--c-family)} .sw.pair{background:var(--c-pair)} .sw.cowork{background:var(--c-cowork)} .sw.inno{background:var(--c-inno)}
+.note{margin-top:20px;font-size:14px;color:var(--muted);max-width:52ch}
+
+.phone-col{display:flex;justify-content:center}
+.phone{width:min(100%,380px);height:780px;background:var(--phone-frame);border-radius:44px;padding:10px;box-shadow:0 24px 60px rgba(18,34,58,.3)}
+.ph-screen{height:100%;background:var(--ph-bg);color:var(--ph-ink);border-radius:34px;display:flex;flex-direction:column;overflow:hidden}
+.ph-top{padding:18px 20px 8px;display:flex;align-items:center;justify-content:space-between}
+.ph-top b{font-family:var(--head);font-size:16px}
+.ph-top small{color:var(--ph-muted);font-size:12px}
+.ph-body{flex:1;overflow-y:auto;padding:6px 20px 24px;scrollbar-width:thin}
+.p-h{font-family:var(--head);font-size:20px;line-height:1.2;margin:8px 0 14px}
+.p-sub{font-size:13px;color:var(--ph-muted);margin:16px 0 8px}
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.track{border:3px solid transparent;border-radius:16px;padding:12px;text-align:left;cursor:pointer;color:var(--on-tint)}
+.track b{display:block;font-family:var(--head);font-size:14px;margin-bottom:2px}
+.track span{font-size:13px;line-height:1.3;display:block}
+.track[aria-pressed="true"]{border-color:#fff;box-shadow:0 0 0 2px var(--ph-bg) inset}
+.t-family{background:var(--c-family)} .t-pair{background:var(--c-pair)} .t-cowork{background:var(--c-cowork)} .t-inno{background:var(--c-inno)}
+.track:not([aria-pressed="true"]){opacity:.72}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--ph-surface);border:1.5px solid var(--ph-line);color:var(--ph-ink);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--ph-accent);border-color:var(--ph-accent);color:#12223a;font-weight:700}
+.stepper{display:flex;align-items:center;gap:14px}
+.stepper button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ph-line);background:var(--ph-surface);cursor:pointer;font-size:20px;line-height:1}
+.stepper button:disabled{opacity:.35;cursor:not-allowed}
+.stepper output{font-family:var(--head);font-size:22px;min-width:34px;text-align:center}
+.btn{display:block;width:100%;margin-top:14px;border:0;border-radius:14px;padding:14px;font-weight:700;cursor:pointer;background:var(--ph-accent);color:#12223a}
+.btn.ghost{background:transparent;color:var(--ph-ink);border:1.5px solid var(--ph-line);font-weight:500}
+.btn.sm{width:auto;display:inline-block;padding:9px 14px;margin-top:10px;font-size:14px}
+.fine{font-size:12px;color:var(--ph-muted);margin-top:12px}
+.sum{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.sum span{background:var(--ph-surface);border-radius:99px;padding:4px 11px;font-size:12px}
+.tl{list-style:none;margin:16px 0 0;padding:0}
+.tl>li{display:grid;grid-template-columns:52px 1fr;gap:10px;position:relative;padding-bottom:14px}
+.tl>li::before{content:"";position:absolute;left:51px;top:10px;bottom:-4px;width:2px;background:var(--ph-line)}
+.tl>li:last-child::before{display:none}
+.tl time{font-family:var(--head);font-size:12px;padding-top:12px;color:var(--ph-muted)}
+.card{background:var(--ph-surface);border-radius:16px;padding:12px 14px;margin-left:12px;position:relative}
+.card::before{content:"";position:absolute;left:-18px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--ph-ink);border:3px solid var(--ph-bg)}
+.card.ours{background:var(--ph-accent);color:#12223a}
+.card.ours::before{background:#12223a}
+.card.ad::before{background:var(--ph-accent)}
+.card h4{font-family:var(--body);font-size:16px;font-weight:700;line-height:1.25}
+.card .meta{font-size:13px;color:var(--ph-muted);margin-top:2px}
+.card.ours .meta{color:#12223a;opacity:.8}
+.card .why{font-size:13px;margin-top:6px}
+.badge{display:inline-block;font-size:11px;font-weight:700;border-radius:99px;padding:2px 9px;margin-bottom:5px}
+.badge.ad{border:1.5px solid var(--ph-accent);color:var(--ph-accent)}
+.badge.us{background:#12223a;color:var(--ph-accent)}
+.lnk{background:none;border:0;color:var(--ph-muted);text-decoration:underline;cursor:pointer;font-size:13px;padding:6px 0 0}
+.ok{margin-top:8px;font-size:14px;font-weight:700}
+
+section[role="tabpanel"]{padding-bottom:72px}
+.pagehead{padding:44px 0 24px}
+.pagehead h2{font-size:clamp(24px,3.4vw,38px)}
+.pagehead p{margin-top:12px;color:var(--muted);max-width:62ch;font-size:17px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.panel{background:var(--surface);border:1.5px solid var(--line);border-radius:22px;padding:24px}
+.panel h3{font-size:18px;margin-bottom:14px}
+.panel ul{margin:0;padding-left:20px;display:grid;gap:8px}
+.streams{display:grid;gap:14px}
+.stream{border-radius:18px;padding:18px 20px;background:var(--soft)}
+.stream h4{font-size:16px;margin-bottom:6px}
+.stream.a{background:var(--c-family);color:var(--on-tint)} .stream.b{background:var(--c-cowork);color:var(--on-tint)}
+label{display:block;font-size:14px;font-weight:500;margin:12px 0 5px}
+input[type=number]{width:100%;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:10px 12px}
+.res{margin-top:18px;border-top:2px solid var(--ink);padding-top:14px;display:grid;gap:6px}
+.res div{display:flex;justify-content:space-between;gap:12px}
+.res .tot{font-family:var(--head);font-size:18px;margin-top:4px}
+.warn{margin-top:14px;font-size:14px;color:var(--muted)}
+.rules li b{font-weight:700}
+.foot{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:36px;padding-top:32px}
+  .cols{grid-template-columns:1fr}
+  .tabs{margin-left:0;width:100%}
+  .phone{height:740px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+        <path d="M3 22 C 9 22, 9 8, 15 8 S 21 22, 27 22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="3" cy="22" r="2.6" fill="currentColor"/><circle cx="27" cy="22" r="3.4" fill="#ffc24b" stroke="currentColor" stroke-width="1.4"/>
+      </svg>
+      Дальше
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Разделы">
+      <button role="tab" id="t-demo" aria-selected="true" aria-controls="v-demo" data-view="demo">Приложение гостя</button>
+      <button role="tab" id="t-biz" aria-selected="false" aria-controls="v-biz" data-view="biz">Для кафе</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<section id="v-demo" role="tabpanel" aria-labelledby="t-demo">
+  <div class="hero">
+    <div>
+      <h1>Ужин закончился. Вечер - нет.</h1>
+      <p class="lead">Гость доел и не знает, куда идти дальше. Кафе берёт это на себя: по количеству людей, настроению и времени составляет план продолжения вечера. На выходе гость может взять еду с собой, чтобы прогулка не прерывалась.</p>
+      <div class="swatches" aria-label="Четыре направления вечера">
+        <div class="sw family"><b>Семья</b>Спокойно и с детьми</div>
+        <div class="sw pair"><b>Пара</b>Вдвоём, без толпы</div>
+        <div class="sw cowork"><b>Коворк</b>Тишина для интровертов</div>
+        <div class="sw inno"><b>Инновационное кафе</b>Попробовать новое</div>
+      </div>
+      <p class="note">Места, время в пути и гости в прототипе вымышлены. Попробуйте разные направления и настроения, план каждый раз будет другим.</p>
+    </div>
+    <div class="phone-col">
+      <div class="phone" role="region" aria-label="Прототип приложения гостя">
+        <div class="ph-screen">
+          <div class="ph-top"><b>Дальше</b><small>демо-данные</small></div>
+          <div class="ph-body" id="phBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="v-biz" role="tabpanel" aria-labelledby="t-biz" hidden>
+  <div class="pagehead">
+    <h2>Как это работает для кафе</h2>
+    <p>Гость получает ответ на вопрос «куда дальше», кафе получает два источника дохода и причину, чтобы его выбрали. Цифры ниже вы вводите сами: до пилота настоящих данных нет.</p>
+  </div>
+  <div class="cols">
+    <div class="streams">
+      <div class="stream a">
+        <h4>Еда с собой</h4>
+        <p>В плане первой строкой идёт набор «на выход», подобранный под направление вечера: семейные пирожные, два кофе на прогулку, кофе и сэндвич для коворка, дегустационный бокс. Это не навязывание: гость берёт то, что сделает следующий час приятнее.</p>
+      </div>
+      <div class="stream b">
+        <h4>Партнёрские места</h4>
+        <p>В каждом плане один слот занимает партнёр с пометкой «Реклама». Партнёр платит за размещение или за приход гостя по коду из приложения. Остальные места подбираются без оплаты, только по совпадению с вечером.</p>
+      </div>
+      <div class="panel">
+        <h3>Правила, чтобы гости не потеряли доверие</h3>
+        <ul class="rules">
+          <li><b>Реклама всегда подписана.</b> Не больше одного рекламного места в плане.</li>
+          <li><b>Сначала совпадение.</b> Партнёр попадает в план, только если подходит по настроению и числу людей.</li>
+          <li><b>Еда с собой по желанию.</b> Кнопка «Добавить к выходу», без всплывающих окон.</li>
+          <li><b>Анонимно.</b> Нужны только количество людей, тип вечера, настроение и время.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Чем это отличается от обычных рекомендаций</h3>
+        <ul>
+          <li>План строится из состава компании, настроения и времени, а не из рейтинга мест.</li>
+          <li>Еда с собой встроена в маршрут и появляется в момент ухода.</li>
+          <li>Четыре направления дают разные маршруты для разных людей, включая тихих.</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="panel">
+        <h3>Калькулятор дохода</h3>
+        <p class="warn" style="margin:0 0 6px">Значения по умолчанию взяты для примера. Замените их своими после интервью и пробных вечеров.</p>
+        <label for="c1">Гостей в вечер</label><input type="number" id="c1" min="0" value="100">
+        <label for="c2">Вечеров в месяц</label><input type="number" id="c2" min="0" value="20">
+        <label for="c3">Сколько процентов гостей открывают план</label><input type="number" id="c3" min="0" max="100" value="30">
+        <label for="c4">Сколько процентов из них берут еду с собой</label><input type="number" id="c4" min="0" max="100" value="20">
+        <label for="c5">Средний чек за еду с собой, у.е.</label><input type="number" id="c5" min="0" value="10">
+        <label for="c6">Число партнёров</label><input type="number" id="c6" min="0" value="3">
+        <label for="c7">Плата одного партнёра в месяц, у.е.</label><input type="number" id="c7" min="0" value="50">
+        <div class="res" aria-live="polite">
+          <div><span>Еда с собой в месяц</span><b id="r1">0</b></div>
+          <div><span>Партнёры в месяц</span><b id="r2">0</b></div>
+          <div class="tot"><span>Итого, у.е.</span><b id="r3">0</b></div>
+        </div>
+        <p class="warn">Формула: гости × вечера × доля открывших × доля взявших × чек, плюс партнёры × плата. Проверьте каждую долю на пилоте.</p>
+      </div>
+      <div class="panel" style="margin-top:24px">
+        <h3>Пилот на четыре недели</h3>
+        <ul>
+          <li>Неделя 1: интервью с 5 гостями о том, что они делают после ужина.</li>
+          <li>Недели 2-3: план на карточке на столе по QR, без регистрации. По вечерам включаем план, по другим нет.</li>
+          <li>Считаем: сколько открыли план, сколько добавили еду с собой, сколько дошли до партнёра по коду.</li>
+          <li>Неделя 4: сравниваем вечера с планом и без. Если разницы нет, меняем идею.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="wrap foot">Прототип идеи для Tamos Case Hackathon 2026. Названия мест и все цифры вымышлены.</footer>
+
+<script>
+(function(){
+"use strict";
+var $=function(s){return document.querySelector(s)};
+var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+
+function setView(id){
+  $$('.tabs button').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.view===id))});
+  ['demo','biz'].forEach(function(v){$('#v-'+v).hidden=(v!==id)});
+  window.scrollTo(0,0);
+}
+$$('.tabs button').forEach(function(b){b.addEventListener('click',function(){setView(b.dataset.view)})});
+
+/* ---------- data ---------- */
+var TRACKS={
+  family:{name:'Семья',desc:'С детьми, без спешки',cls:'t-family',people:4,moods:['Спокойно','Весело','Любопытно'],
+    take:{title:'Семейный набор пирожных',desc:'Для прогулки или чтобы доесть дома'}},
+  pair:{name:'Пара',desc:'Вдвоём, без толпы',cls:'t-pair',people:2,moods:['Романтично','Спокойно','Весело','Любопытно'],
+    take:{title:'Два кофе и десерт на прогулку',desc:'Берите и идите смотреть на огни'}},
+  cowork:{name:'Коворк',desc:'Тишина для интровертов',cls:'t-cowork',people:1,moods:['Сосредоточенно','Спокойно','Любопытно'],
+    take:{title:'Холодный кофе и сэндвич',desc:'Чтобы не отвлекаться на еду за работой'}},
+  inno:{name:'Инновационное кафе',desc:'Попробовать новое',cls:'t-inno',people:3,moods:['Любопытно','Весело','Спокойно'],
+    take:{title:'Дегустационный бокс',desc:'Попробуйте новые вкусы по дороге'}}
+};
+var P=[
+ /* family */
+ {id:'f1',t:'family',n:'Парк «Сказка»',k:'Прогулка',d:40,w:6,max:8,m:['Спокойно','Весело','Любопытно'],ad:false},
+ {id:'f2',t:'family',n:'Площадка у фонтана',k:'Для детей',d:30,w:5,max:8,m:['Весело'],ad:false},
+ {id:'f3',t:'family',n:'Вечерняя аллея с подсветкой',k:'Прогулка',d:25,w:4,max:8,m:['Спокойно','Любопытно'],ad:false},
+ {id:'f4',t:'family',n:'Мастерская «Глина»',k:'Мастер-класс',d:60,w:8,max:6,m:['Весело','Любопытно'],ad:true},
+ {id:'f5',t:'family',n:'Мороженое «Лёд и Лето»',k:'Десерт',d:20,w:3,max:8,m:['Весело','Спокойно'],ad:true},
+ {id:'f6',t:'family',n:'Семейное кино «Клён»',k:'Кино',d:90,w:10,max:8,m:['Спокойно','Весело'],ad:true},
+ /* pair */
+ {id:'p1',t:'pair',n:'Набережная на закате',k:'Прогулка',d:40,w:7,max:4,m:['Романтично','Спокойно'],ad:false},
+ {id:'p2',t:'pair',n:'Смотровая площадка',k:'Вид на город',d:30,w:9,max:6,m:['Романтично','Любопытно'],ad:false},
+ {id:'p3',t:'pair',n:'Старый сквер с фонарями',k:'Прогулка',d:25,w:4,max:4,m:['Романтично','Спокойно','Весело'],ad:false},
+ {id:'p4',t:'pair',n:'Винный бар «Тихий угол»',k:'Бар',d:60,w:6,max:3,m:['Романтично','Спокойно'],ad:true},
+ {id:'p5',t:'pair',n:'Кинозал на двоих «Лофт»',k:'Кино',d:100,w:8,max:2,m:['Романтично','Любопытно'],ad:true},
+ {id:'p6',t:'pair',n:'Десертная «Пудра»',k:'Десерт',d:30,w:5,max:4,m:['Романтично','Весело'],ad:true},
+ /* cowork */
+ {id:'c1',t:'cowork',n:'Тихий сквер',k:'Передышка',d:20,w:4,max:4,m:['Спокойно','Любопытно'],ad:false},
+ {id:'c2',t:'cowork',n:'Городская библиотека, вечерний зал',k:'Чтение',d:60,w:9,max:3,m:['Сосредоточенно','Спокойно'],ad:false},
+ {id:'c3',t:'cowork',n:'Набережная без людей',k:'Прогулка',d:30,w:8,max:4,m:['Спокойно','Любопытно'],ad:false},
+ {id:'c4',t:'cowork',n:'Коворк «Листок»',k:'Работа в тишине',d:120,w:7,max:4,m:['Сосредоточенно','Спокойно'],ad:true},
+ {id:'c5',t:'cowork',n:'Читальня «Полка»',k:'Чтение и кофе',d:90,w:6,max:3,m:['Спокойно','Сосредоточенно'],ad:true},
+ {id:'c6',t:'cowork',n:'Клуб тихих настолок',k:'Игры без шума',d:90,w:10,max:4,m:['Любопытно','Спокойно'],ad:true},
+ /* inno */
+ {id:'i1',t:'inno',n:'Уличная выставка на площади',k:'Арт',d:30,w:6,max:8,m:['Любопытно','Спокойно'],ad:false},
+ {id:'i2',t:'inno',n:'Мост с подсветкой',k:'Прогулка',d:20,w:5,max:8,m:['Весело','Любопытно'],ad:false},
+ {id:'i3',t:'inno',n:'Двор с муралами',k:'Арт',d:25,w:7,max:8,m:['Любопытно','Весело'],ad:false},
+ {id:'i4',t:'inno',n:'Кофейня-лаборатория «Ферма»',k:'Необычные напитки',d:45,w:6,max:6,m:['Любопытно','Спокойно'],ad:true},
+ {id:'i5',t:'inno',n:'Бар с роботом-барменом «Бит»',k:'Бар',d:60,w:8,max:6,m:['Весело','Любопытно'],ad:true},
+ {id:'i6',t:'inno',n:'VR-клуб «Портал»',k:'Игры',d:60,w:9,max:5,m:['Весело','Любопытно'],ad:true},
+ {id:'i7',t:'inno',n:'Мастер-класс по ферментации',k:'Мастер-класс',d:90,w:7,max:8,m:['Любопытно','Сосредоточенно'],ad:true}
+];
+var TIMES=[{id:60,name:'1 час',n:2},{id:120,name:'2 часа',n:3},{id:999,name:'До закрытия',n:4}];
+var START=20*60+50; /* демо: сейчас 20:40, набор будет готов к 20:50 */
+
+var S={step:'setup',track:'pair',people:2,mood:'Романтично',time:120,plan:[],take:false};
+
+function score(p){
+  var s=0;
+  if(p.m.indexOf(S.mood)>-1)s+=3;
+  s+=S.people<=p.max?2:-5;
+  return s;
+}
+function pool(ad){
+  return P.filter(function(p){return p.t===S.track&&p.ad===ad})
+    .map(function(p,i){return {p:p,s:score(p)-i*0.01}})
+    .sort(function(a,b){return b.s-a.s}).map(function(x){return x.p});
+}
+function buildPlan(){
+  var n=TIMES.filter(function(t){return t.id===S.time})[0].n;
+  var free=pool(false).slice(0,n-1),ad=pool(true)[0],out=[];
+  if(n===2){out=[free[0],ad]}
+  else{out=[free[0],ad].concat(free.slice(1))}
+  return out.map(function(p){return p.id});
+}
+function byId(id){return P.filter(function(p){return p.id===id})[0]}
+function swap(i){
+  var cur=byId(S.plan[i]),list=pool(cur.ad);
+  var idx=list.indexOf(cur),k;
+  for(k=1;k<=list.length;k++){
+    var c=list[(idx+k)%list.length];
+    if(S.plan.indexOf(c.id)===-1){S.plan[i]=c.id;return}
+  }
+}
+function fmt(m){var h=Math.floor(m/60)%24,mm=m%60;return (h<10?'0':'')+h+':'+(mm<10?'0':'')+mm}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function peopleWord(n){return n===1?'1 человек':(n<5?n+' человека':n+' человек')}
+
+/* ---------- views ---------- */
+function viewSetup(){
+  var T=TRACKS[S.track];
+  var h='<h2 class="p-h">Куда пойдём после ужина?</h2><div class="tracks" role="group" aria-label="Направление вечера">';
+  Object.keys(TRACKS).forEach(function(k){
+    var t=TRACKS[k];
+    h+='<button type="button" class="track '+t.cls+'" data-k="tr'+k+'" data-act="track" data-v="'+k+'" aria-pressed="'+(k===S.track)+'"><b>'+t.name+'</b><span>'+t.desc+'</span></button>';
+  });
+  h+='</div><p class="p-sub">Сколько вас</p><div class="stepper"><button type="button" data-k="minus" data-act="minus" aria-label="Меньше"'+(S.people<=1?' disabled':'')+'>-</button><output aria-live="polite">'+S.people+'</output><button type="button" data-k="plus" data-act="plus" aria-label="Больше"'+(S.people>=8?' disabled':'')+'>+</button></div>';
+  h+='<p class="p-sub">Какое настроение</p><div class="chips" role="group" aria-label="Настроение">';
+  T.moods.forEach(function(m){h+='<button type="button" class="chip" data-k="m'+m+'" data-act="mood" data-v="'+m+'" aria-pressed="'+(m===S.mood)+'">'+m+'</button>'});
+  h+='</div><p class="p-sub">Сколько есть времени</p><div class="chips" role="group" aria-label="Время">';
+  TIMES.forEach(function(t){h+='<button type="button" class="chip" data-k="t'+t.id+'" data-act="time" data-v="'+t.id+'" aria-pressed="'+(t.id===S.time)+'">'+t.name+'</button>'});
+  h+='</div><button type="button" class="btn" data-k="go" data-act="go">Составить вечер</button>';
+  h+='<p class="fine">Мы не спрашиваем имя и телефон. Нужны только число людей, настроение и время.</p>';
+  return h;
+}
+function viewPlan(){
+  var T=TRACKS[S.track];
+  var h='<h2 class="p-h">Ваш вечер</h2><div class="sum"><span>'+T.name+'</span><span>'+peopleWord(S.people)+'</span><span>'+S.mood.toLowerCase()+'</span><span>'+TIMES.filter(function(t){return t.id===S.time})[0].name.toLowerCase()+'</span></div>';
+  h+='<ul class="tl">';
+  h+='<li><time>20:50</time><div class="card ours"><span class="badge us">От нашего кафе</span><h4>'+T.take.title+'</h4><div class="meta">'+T.take.desc+'</div>';
+  if(S.take)h+='<p class="ok">Будет готово у кассы к 20:50</p><button type="button" class="lnk" style="color:#12223a" data-k="untake" data-act="untake">Убрать из плана</button>';
+  else h+='<button type="button" class="btn sm" style="background:#12223a;color:#ffc24b" data-k="take" data-act="take">Добавить к выходу</button>';
+  h+='</div></li>';
+  var t=START+5;
+  S.plan.forEach(function(id,i){
+    var p=byId(id);
+    var fit=p.m.indexOf(S.mood)>-1?'Подходит под настроение «'+S.mood.toLowerCase()+'».':'Спокойный вариант для этого вечера.';
+    var cap=S.people<=p.max?'Рассчитано на '+peopleWord(p.max)+'.':'Для вашей компании тут может быть тесно.';
+    h+='<li><time>'+fmt(t)+'</time><div class="card'+(p.ad?' ad':'')+'">'+(p.ad?'<span class="badge ad">Реклама</span>':'')+'<h4>'+esc(p.n)+'</h4><div class="meta">'+p.k+', '+p.d+' мин, идти '+p.w+' мин</div><p class="why">'+fit+' '+cap+'</p><button type="button" class="lnk" data-k="sw'+i+'" data-act="swap" data-v="'+i+'">Показать другой вариант</button></div></li>';
+    t+=p.d+(S.plan[i+1]?byId(S.plan[i+1]).w:0);
+  });
+  h+='</ul>';
+  h+='<button type="button" class="btn ghost" data-k="edit" data-act="edit">Изменить ответы</button>';
+  h+='<p class="fine">Рекламное место в плане всегда одно и подписано. Остальные места подобраны только по совпадению с вашим вечером.</p>';
+  return h;
+}
+function render(){
+  var a=document.activeElement,k=a&&a.dataset&&a.dataset.k,top=$('#phBody').scrollTop;
+  $('#phBody').innerHTML=S.step==='setup'?viewSetup():viewPlan();
+  $('#phBody').scrollTop=top;
+  if(k){var el=$('#phBody [data-k="'+k+'"]');if(el&&!el.disabled)el.focus({preventScroll:true})}
+}
+function act(a,v){
+  switch(a){
+    case 'track':S.track=v;S.people=TRACKS[v].people;S.mood=TRACKS[v].moods[0];break;
+    case 'minus':S.people=Math.max(1,S.people-1);break;
+    case 'plus':S.people=Math.min(8,S.people+1);break;
+    case 'mood':S.mood=v;break;
+    case 'time':S.time=+v;break;
+    case 'go':S.plan=buildPlan();S.take=false;S.step='plan';$('#phBody').scrollTop=0;break;
+    case 'edit':S.step='setup';break;
+    case 'swap':swap(+v);break;
+    case 'take':S.take=true;break;
+    case 'untake':S.take=false;break;
+  }
+  render();
+}
+$('#phBody').addEventListener('click',function(e){
+  var b=e.target.closest('[data-act]');
+  if(!b||b.disabled)return;
+  act(b.dataset.act,b.dataset.v);
+});
+render();
+
+/* ---------- calculator ---------- */
+function num(id){var v=parseFloat($('#'+id).value);return isNaN(v)||v<0?0:v}
+function calc(){
+  var pct=function(id){return Math.min(100,num(id))/100};
+  var food=num('c1')*num('c2')*pct('c3')*pct('c4')*num('c5');
+  var part=num('c6')*num('c7');
+  var f=function(x){return Math.round(x).toLocaleString('ru-RU')};
+  $('#r1').textContent=f(food);$('#r2').textContent=f(part);$('#r3').textContent=f(food+part);
+}
+['c1','c2','c3','c4','c5','c6','c7'].forEach(function(id){$('#'+id).addEventListener('input',calc)});
+calc();
+})();
+</script>
+</body>
+</html>
